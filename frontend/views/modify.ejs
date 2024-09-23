@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= heading %></title>
+    <link rel="stylesheet" href="/styles/main.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1><%= heading %></h1>
+
+      <% if (post && post.id) { %>
+      <form id="editForm" method="post" action="/api/posts/<%= post.id %>">
+        <label for="title">Title:</label>
+        <input
+          type="text"
+          name="title"
+          id="title"
+          value="<%= post.title %>"
+          placeholder="Title"
+          required
+        />
+
+        <label for="content">Content:</label>
+        <textarea name="content" id="content" rows="10" required>
+            <%= post.content %>
+          </textarea
+        >
+
+        <label for="author">Author:</label>
+        <input
+          type="text"
+          name="author"
+          id="author"
+          value="<%= post.author %>"
+          placeholder="Author"
+          required
+        />
+
+        <button class="full-width" type="submit"><%= submit %></button>
+      </form>
+      <% } else { %>
+      <form id="newPostForm" method="post" action="/api/posts">
+        <label for="newTitle">Title:</label>
+        <input
+          type="text"
+          name="title"
+          id="newTitle"
+          placeholder="Title"
+          required
+        />
+
+        <label for="newContent">Content:</label>
+        <textarea
+          name="content"
+          id="newContent"
+          placeholder="Content"
+          rows="10"
+          required
+        ></textarea>
+
+        <label for="newAuthor">Author:</label>
+        <input
+          type="text"
+          name="author"
+          id="newAuthor"
+          placeholder="Author"
+          required
+        />
+
+        <button class="full-width" type="submit"><%= submit %></button>
+      </form>
+      <% } %>
+    </div>
+  </body>
+</html>
